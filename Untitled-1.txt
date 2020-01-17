@@ -1,0 +1,13 @@
+smart contract dev: 
+    requirements:
+        -Solidity language (possibly others if non-Ethereum)
+        -fluency in underlying blockchain concepts
+        -working knowledge of cryptography 
+
+    useful: 
+        -background in other easier language (Javascript, Python)
+        -degree in Compsci
+
+data scientist: 
+    r
+    

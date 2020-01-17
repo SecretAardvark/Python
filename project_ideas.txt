@@ -1,0 +1,16 @@
+project ideas:
+-5/3/1 calculator: calculates your 1rm, and gives you 5/3/1 working weights for a cycle. 
+    Maybe expand to be a webapp with logins for longer term loging. 
+
+-Compare population per oregon district with unregistered voter data, generate a list 
+    etc of unregistered voters 
+
+-Twitter bot (raspberry pi?)
+    Trump keyword tracker 
+
+-'delta' crypto tracker app spreadsheet clone. 
+    Get trade data from exchange api's and log in a spreadsheet
+    maybe build GUI?
+    take data and make vizualizations out of it
+    
+    

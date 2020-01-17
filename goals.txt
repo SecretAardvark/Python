@@ -1,0 +1,17 @@
+-Longterm study goals: 
+ goal: 15-20 hours a week 
+
+-Shorterm study goals:
+    finish all the projects in 'python crash course'
+    finish all projects in ATBS
+    finish 'learn python the hard way'
+    5 hours a week 
+    upload all 3 courses to github
+
+-have a study system:
+    first hour after work 
+    first hour when i wake up 
+    Set blackout times on off days 
+    eliminate distractions
+    passive/active learning ratio
+   

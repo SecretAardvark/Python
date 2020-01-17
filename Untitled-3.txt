@@ -1,0 +1,11 @@
+import matplotlib and csv 
+
+find the row header number for the row you need 
+
+append that row to a list 
+
+convert the list to int
+
+plot the data with matplotlib (plt.plot)
+
+set the graph title, xlabel, and ylabel
