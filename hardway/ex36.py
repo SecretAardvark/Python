@@ -131,7 +131,7 @@ def kitchen():
     print("It hisses and lunges to attack you! What do you do?")
     choice = input("('fight' or 'flee')> ")
 
-    if choice == fight:
+    if choice == 'fight':
         fight_monster('giant rat')
     else:
         print("You scream REEEEEEE and turn to run.")
