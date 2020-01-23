@@ -3,60 +3,60 @@ import random
 
 
 
-class Weapon():
-    def __init__(self): 
-        weapons = ['sword', 'mace', 'dagger',]
-        self.type = random.choice(weapons)
-        if type == 'sword':
-            self.damage_type = 'blade'
-            self.min_damage = 2 
-            self.max_damage = 9
-        elif type == 'mace':
-            self.damage_type = 'blunt'
-            self.min_damage=  2
-            self.max_damage = 9
-
-        elif type == 'dagger':
-            self.damage_type = 'blade'
-            self.min_damage = 2 
-            self.max_damage = 5 
-
-"""class Monster():
-    def __init__(self):
-        #monsters = ['skeltals', 'giant rat', 'dragon']
-        self.type = monster
-        if self.type == 'skeltal':
-            self.hp = 50 
-            self.min_damage = 1
-            self.max_damage = 5
-        elif self.type == 'giant rat':
-            self.hp = 30 
-            self.min_damage = 1
-            self.max_damage = 5
-        else:
-            self.hp = 100
-            self.min_damage = 5
-            self.max_damage = 12
-            self.fire_attack_min = 20
-            self.fire_attack_max = 40"""
 
 
 class Skeltal():
     def __init__(self):
-        self.hp = 50 
+        self.type = 'Skeltal'
+        self.hp = 40 
         self.min_damage = 1
         self.max_damage = 5
+    #def attack_player(self, player):
+
+
                 
 class Giant_rat():
     def __init__(self):
-        self.hp = 30 
+        self. type = 'Giant Rat'
+        self.hp = 30
         self.min_damage = 1
         self.max_damage = 5
 
 class Dragon():
     def __init__(self):
-        self.hp = 100
-        self.min_damage = 5
-        self.max_damage = 12
-        self.fire_attack_min = 20
-        self.fire_attack_max = 40
+        self.type = 'Dragon'
+        self.hp = 75
+        self.min_damage = 3
+        self.max_damage = 10
+        self.fire_attack_min = 10
+        self.fire_attack_max = 20
+
+
+class player():
+    def __init__(self,):
+        self.hp = 100  
+        self.has_potion = False
+        self.weapon_type = 'Bare fists'
+        self.min_damage = 1 
+        self.max_damage = 3
+    def player_weapon(self):
+        weapons = ['sword', 'mace', 'dagger',]
+        self.weapon_type = random.choice(weapons)
+        if self.weapon_type == 'sword':
+            self.damage_type = 'blade'
+            self.min_damage = 3 
+            self.max_damage = 9
+        elif self.weapon_type == 'mace':
+            self.damage_type = 'blunt'
+            self.min_damage=  3
+            self.max_damage = 9
+
+        elif self.weapon_type == 'dagger':
+            self.damage_type = 'blade'
+            self.min_damage = 2 
+            self.max_damage = 5 
+    
+    def get_potion(self):
+        self.has_potion = True
+
+

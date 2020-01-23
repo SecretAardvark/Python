@@ -1,15 +1,16 @@
 from sys import exit
 import random
-from story_objects import Weapon 
+import time
+from story_objects import  player, Skeltal, Giant_rat, Dragon
 
 #TODO:
 #make monster classes x
 
 # make weapon class  x 
 
-#write functions for each room 
+#write functions for each room x
 
-def front_door():
+def front_door(knight):
     print("The door to the castle opens with a creak.")
     print("You find yourself in a large entry hall.")
     print("There is a chest in the room. Do you open it?")
@@ -17,9 +18,9 @@ def front_door():
     
     if choice == 'yes':
        
-        #choice = random.choice(weapons)
-        player_weapon = Weapon()
-        print(f"You have received a {player_weapon.type}!")
+        
+        knight.player_weapon()
+        print(f"You have received a {knight.weapon_type}!")
         print("You continue onwards.")
     else:
         print("You ignore the chest and continue onwards.")
@@ -30,13 +31,13 @@ def front_door():
     stair_choice = input("(right or left)> ")
 
     if stair_choice == 'right':
-        bed_chambers()
+        bed_chambers(knight)
     elif stair_choice == 'left':
-        kitchen()
+        kitchen(knight)
     else:
-        front_door_again()
+        front_door_again(knight)
 
-def front_door_again():
+def front_door_again(knight):
     print("You return to the entry hall.")
     print("There are two seperate staircases on each end of the Hall.")
     print("Do you take the right or the left one?")
@@ -44,30 +45,29 @@ def front_door_again():
     stair_choice = input("(right or left)> ")
 
     if stair_choice == 'right':
-        bed_chambers()
+        bed_chambers(knight)
     elif stair_choice == 'left':
-        kitchen()
+        kitchen(knight)
     else:
-        front_door_again()
+        front_door_again(knight)
 
-def bed_chambers(): 
+def bed_chambers(knight): 
     print("You go up the right staircase and enter a long hallway with the servants quarters.")
     print("As you're exploring you hear one of the locked doors behind you open slowly...")
-    print("You turn around and Oh No! Its two Spooky Skeltals! Doot doot!")
+    print("You turn around and Oh No! Its a Spooky Skeltal! Doot doot!")
     print("What do you do? Fight the Skeltals or run away?")
 
     choice = input("(fight or flee)> ")
 
     if choice == 'fight':
-        print("You brandish your {player_weapon} and turn to fight!")
-        fight_monster('skeltals')
+        fight_monster(knight, Skeltal())
     else:
         print("You scream REEEEEEE and turn to run.")
-        front_door()
+        front_door_again(knight)
 
     
 
-def walk_around():
+def walk_around(knight):
     print("You decide going in through the front is too obvious.")
     print("You walk around the outside of the castle.")
     print("You come to a dead end.")
@@ -84,7 +84,7 @@ def walk_around():
         print("You take a closer look at the statue and find a hidden button! Press that shit.")
         print("You press the button and a hidden passage opens in the side of the castle!")
         print("You enter the hidden passage and emerge on the other side...")
-        throne_room()
+        throne_room(knight)
     else:
         print("You seem confused. You decide to return to the castle entrance.")
         start()
@@ -92,50 +92,105 @@ def walk_around():
 
 # write loops for each battle 
 
+def fight_monster(knight, monster):
+    not_dead = True
+    if knight.weapon_type == 'bare fists':
+        print("You don't have a weapon! Uh oh!")
+    print(f"You draw your {knight.weapon_type} and prepare to fight the {monster.type}!")
+    while not_dead:
+        if monster.type == 'Dragon':
+            if knight.has_potion == True:
+                print("You remember you have a fancy potion and drink it!")
+                print("Your hp is restored!")
+                knight.hp = 100
+                knight.has_potion = False
+            else:
+                pass
+
+        damage = random.randint(knight.min_damage, knight.max_damage)
+        print(f"You attack the {monster.type} for {damage} damage!")
+        time.sleep(1)
+        monster.hp -= damage
+        print(f"The {monster.type}s HP is: {monster.hp}")
+        time.sleep(1)
+        
+
+        m_damage = random.randint(monster.min_damage, monster.max_damage)
+        print(f"The {monster.type} attacks you! It does {m_damage} damage!")
+        time.sleep(1)
+        knight.hp -= m_damage
+        print(f"Your HP is: {knight.hp}")
+        time.sleep(1)
+        if knight.hp <= 0:
+            not_dead = False
+            dead(f"the {monster.type} killed you! Crap!")
+        elif monster.hp <= 0:
+            not_dead = False
+            print(f"You defeated the {monster.type}!")
+            print("You continue up the stairs.")
+            if monster.type == 'Dragon':
+                print("You rescue the princess and have crazy hawt sex!")
+            else:
+                throne_room(knight)
+
+
+        
+    
+
+
 # write start function 
 def start():
     print("You are a brave knight that has been given an important mission by the King!")
     print("You must defeat the evil Dragon and rescue his daughter, the Princess!")
+    time.sleep(1)
     print("You approach the Dragons stronghold castle.")
     print("Do you enter through the front door or find another way in?") 
     print("(type 'front door' or 'look around')")
+    
+    knight = player()
 
     choice = input("> ")
 
     if choice == 'front door':
-        front_door()
+        front_door(knight)
     elif choice == 'look around':
-        walk_around()
+        walk_around(knight)
     else:
         start()
 
-def throne_room():
+def throne_room(knight):
     print("You have entered the throne room!")
     print("No sign of the Dragon yet. You proceed cautiously")
+    time.sleep(1)
     print("Suddenly you notice the dragon sleeping on the other side of the room!")
     print("The Dragon awakens! What do you do?")
     
     choice = input('(fight or flee)> ')
     if choice == 'fight':
-        fight_monster('dragon')
+        fight_monster(knight, Dragon())
     else:
         print("You attempt to flee but find yourself quaking with fear.")
         print("Oh no!! You've soiled yourself.")
         dead('The dragon chomps you in half.')
 
 
-def kitchen():
+def kitchen(knight):
     print("You go up the left side stairway.")
+    time.sleep(1)
     print("You arrive in the castle kitchen. It's a mess!")
+    print("Might as well search the cupboards while You're here!")
+    knight.get_potion()
+    print("You find a Magic Potion!")
+    time.sleep(1)
     print("A rat emerges from the pantry. Its gotten huge from eating all the food!")
     print("It hisses and lunges to attack you! What do you do?")
     choice = input("('fight' or 'flee')> ")
 
     if choice == 'fight':
-        fight_monster('giant rat')
+        fight_monster(knight, Giant_rat())
     else:
         print("You scream REEEEEEE and turn to run.")
-        front_door()
+        front_door_again(knight)
 
 #write dead() function 
 def dead(why):
