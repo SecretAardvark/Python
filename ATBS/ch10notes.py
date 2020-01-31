@@ -53,7 +53,7 @@ os.unlink(path)
 
 #Example:
 os.unlink('c:/bacon.txt')
-#Deletes bacon.try:
+#Deletes bacon.txt:
 
 #os.rmdir():  Deletes the folder at path. The folder must be empty.
 os.rmdir(path)
@@ -145,9 +145,11 @@ newzip = zipfile.Zipfile(zipfile_name, 'w')
 #   This works similar to the open() function. 
 
 
-#
-
-
-
-
+newzip.write(filename, compress_type)
+#.write(): When you pass .write a filename or path, it will compress the file at that path 
+#   and add it to the zipfile. The second argument tells the computer what compression type 
+#   to use. zipfile.ZIP_DEFLATED is reccommended. 
+   
+#IMPORTANT: write mode will erase all existing contents of a zip file. If you want to ADD 
+#   a file to a .zip, open the file with 'a' (append mode) as the second argument. 
 
